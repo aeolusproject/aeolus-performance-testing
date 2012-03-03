@@ -1,0 +1,19 @@
+STEPS
+1. Download and install jmeter 
+2. Use the setup.sh script to cleanup and configure aeolus and to create some test users
+   ./setup.sh -u 5 -p ec2
+3. Create a provider account in conductor
+4. Start jmeter and open a test plan, either fedora14.jmx (for ec2 snapshot builds) or fedora15.jmx
+5. Change the number of threads in the thread group to match the number of test users you created
+6. In HTTP Request Defaults, change "Server Name or IP" to localhost or a remote host
+7.  Start the test
+
+NOTES
+
+The template is embedded as the image_xml parameter in the HTTP POST to /conductor/images.
+
+TODO
+
+Add loop to check push is successful.
+Break push out to its own thread pool so that we wait for a builds to finish before we initiate the pushes.
+

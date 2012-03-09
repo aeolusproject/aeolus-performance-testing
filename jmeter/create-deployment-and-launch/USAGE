@@ -1,0 +1,21 @@
+STEPS
+1. Download and install jmeter 
+2. Use the configure-and-create-users.sh script to cleanup and configure aeolus and to create some test users
+   ./configure-and-create-users.sh -u 5 -p ec2
+3. Create a provider account in conductor
+4. Start jmeter and open launch-fedora15.jmx
+5. Set number of threads in "instance launch group" to match the number of test users you created
+6. In HTTP Request Defaults, change "Server Name or IP" to localhost or a remote host
+7.  Start the test
+
+NOTES
+
+The image build group executes a single thread to create an image that is then built and pushed.
+The deployments created in the "instance launch group" uses this one image.
+
+The push check only works for the mock provider.
+
+The template is embedded as the image_xml parameter in the HTTP POST to /conductor/images.
+
+
+
